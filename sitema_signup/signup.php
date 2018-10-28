@@ -26,6 +26,11 @@ if($_SERVER['RESQUEST_METHOD'] == "POST"){
     //Si todo está correcto, enviarlo a la base de datos
     if(empty($errores)){
         include("../funciones/base_de_datos/agregar_usuario.php");
+        if(agregar($nombre, $correo, $contrasena)){
+            echo "agregado con exito a la bd";
+        }else{
+            echo "sad";
+        }
     }
 }
 ?>
