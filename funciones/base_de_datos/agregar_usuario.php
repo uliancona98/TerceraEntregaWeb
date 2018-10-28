@@ -7,8 +7,8 @@ function agregar($nombre, $correo, $contrasena){
 
     $nombre = mysqli_real_escape_string($conexion,$nombre);
     $correo = mysqli_real_escape_string($conexion,$correo);
-    $contrasena = mysqli_real_escape_string($conexion,$correo);
-    
+    $contrasena = mysqli_real_escape_string($conexion,$contrasena);
+
     $sentencia = "INSERT INTO USUARIOS (nombre, correo, contrasena) VALUES('$nombre','$correo','$contrasena')";
     $conexion->query($sentencia);
     $affected_rows = $conexion->affected_rows;

@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         if(agregar($nombre, $correo, $contrasena_cifrada)){
             echo "agregado con exito a la bd";
         }else{
-            errores['correoExists'] = "El correo ya se encuentra registrado."
+            $errores['correoExists'] = "El correo ya se encuentra registrado.";
         }
     }
 }
