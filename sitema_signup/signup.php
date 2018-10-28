@@ -18,31 +18,32 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
     if(!comprobarContrasena($contrasena)){
         $errores['contrasena'] = "La contraseña debe ser mínimo 6 carácteres y máximo 20";
+    }else{
+        $contrasena_cifrada = password_hash($contrasena,PASSWORD_DEFAULT);
     }
     if($contrasena != $_POST['repetir_contrasena']){
         $errores['repetir_contrasena'] = "Las contraseñas no coinciden.";
-    }
-    
+    } 
     //Si todo está correcto, enviarlo a la base de datos
     if(empty($errores)){
         include("../funciones/base_de_datos/agregar_usuario.php");
-        if(agregar($nombre, $correo, $contrasena)){
+        if(agregar($nombre, $correo, $contrasena_cifrada)){
             echo "agregado con exito a la bd";
         }else{
-            echo "sad";
+            errores['correoExists'] = "El correo ya se encuentra registrado."
         }
     }
 }
 ?>
 
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Registrarse</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
     <!--FORMULARIO-->
@@ -58,6 +59,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             <p>Repetir contraseña: <input type="password" name="repetir_contrasena"></p>
             <?=isError($errores, 'repetir_contrasena'); ?>
             <p><input type="submit" value="Enviar"> <a href="../index.html"><input type="button" value="Cancelar"></a> </p>
-        </form>
+    </form>
 </body>
 </html>
