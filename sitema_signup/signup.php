@@ -3,7 +3,7 @@ include ("../funciones/funciones_comprobacion.php");
 
 session_start();
 $errores = array();
-if($_SERVER['RESQUEST_METHOD'] == "POST"){
+if($_SERVER['REQUEST_METHOD'] == "POST"){
     //Obtenemos los datos de interes
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
