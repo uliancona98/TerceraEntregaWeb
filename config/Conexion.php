@@ -2,7 +2,7 @@
 require('config.php');
 
 class Conexion{
-    protected $conexion_db;
+    private $conexion_db;
 
     public function Conexion(){
         $this->conexion_db = new mysqli(DB_HOST, DB_USUARIO, DB_CONTRA, DB_NOMBRE);
@@ -11,6 +11,14 @@ class Conexion{
             return;
         }
         $this->conexion_db->set_charset(DB_CHARSET);
+    }
+
+    public function get_conexion(){
+        return $conexion_db;
+    }
+
+    public function close_conexion(){
+        $this->conexion_db->close();
     }
 }
 ?>
