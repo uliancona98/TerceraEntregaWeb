@@ -9,6 +9,12 @@ session_start();
         <link rel="stylesheet" href="css/estilosInicio.css">
         <link rel="stylesheet" href="css/estilosGenerales.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montaga'>
+        <script src="../calendario/js/jquery.min.js"></script>
+        <script src="../calendario/js/moment.min.js"></script>
+        <link rel="stylesheet" href="../calendario/css/fullcalendar.min.css">
+        <link rel="stylesheet" href="../calendario/css/mymodal.css">
+        <script src="../calendario/js/fullcalendar.min.js"></script>
+        <script src="../calendario/js/es.js"></script>
         <title>Inicio</title>
     </head>
     <body>
@@ -29,7 +35,7 @@ session_start();
                                 <li><a href="">Flora y Fauna</a></li>
                             </ul>
                         </li>
-                        
+
                         <?php
                         include("../sistema_login/manejador_sesiones.php");
                         $menu = get_Menu();
@@ -84,16 +90,42 @@ session_start();
                     </div>
                 </div>
             </div>
-            <!-- The Modal -->
+            <!-- The Modal for Video-->
             <div id="myModal" class="modal tamano-12">
                 <span class="close">&times;</span>
                 <video class="modal-content" id="vid01" controls></video>
             </div>
 
-            <div class="tamano-12" id="video">
+            <div class="tamano-8" id="video">
                 <h3>Siente la experiencia.</h3>
                 <video id="video-experiencia" src="video/To%20my%20Holbox.mp4" width="60%"></video>
                 <div id="video-over">Toca el video para ampliar.</div>
+            </div>
+            <!-- The Modal  for Calendar-->
+            <div id="myModalCalendar" class="modal tamano-12">
+                <!-- Modal content -->
+                <div class="modal-content">
+                <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Evento</h2>
+                <h4 id="tituloEvento"></h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="txtID"  name="txtID"/>
+                    Fecha: <input type="text" disabled id="txtFecha" name = "txtFecha"/><br/>
+                    Titulo: <input type="text" id="txtTitulo" placeholder="Titulo del evento"/><br/>
+                    Hora: <input type ="datetime" id="txtHora" value = "10:30"/><br/>
+                    Descripcion: <textarea id = "txtDescripcion" rows = "3" placeholder="Descripción del evento"></textarea><br/>
+                
+                </div>
+                <div class="modal-footer">
+                <button type="button" id="btnOk">Ok</button>
+                </div>
+            </div>
+
+            </div>
+            <div class="tamano-4" id= "calendario">
+                <div id ="CalendarioWeb"></div>
             </div>
         </div>
         <footer>
@@ -125,7 +157,7 @@ session_start();
             </p>
         </footer>
 
-    <!---modal--->
+    <!---modal for video--->
         <script>
 
             document.getElementById("video-experiencia").addEventListener('click',llamarModal);
@@ -151,6 +183,49 @@ session_start();
                 modalImg.pause();
                 modal.style.display = "none";
 
+            }
+
+            </script>
+        <!--modal for calendar-->
+            <script>
+                $(document).ready(function(){
+                    $('#CalendarioWeb').fullCalendar({
+                        events: '../calendario/eventos.php',
+                        eventClick:function(calEvent, jsEvent, view){
+                            $('#tituloEvento').html(calEvent.title);
+                            $('#txtDescripcion').val(calEvent.descripcion);
+                            $('#txtID').val(calEvent.id);
+                            $('#txtTitulo').val(calEvent.title);
+                            FechaHora =calEvent.start._i.split(" ");
+                            $('#textFecha').val(FechaHora[0]);
+                            $('#txtHora').val(FechaHora[1]);
+                            document.getElementById('myModal').style.display = "block";
+                        }
+
+                    });
+                });
+            </script>
+
+            <script>
+
+                window.onclick = function(event){
+                    if(event.target == document.getElementaryById('myModalCalendar')){
+                        document.getElementById('myModalCalendar').style.display = "none";
+                    }
+                }
+
+            </script>
+
+            <script>
+            var NuevoEvento;
+            $('#btnOk').click(function(){
+                document.getElementById('myModalCalendar').style.display = "none";     
+            });
+            function limpiarFormulario(){
+                $('#txtDescripcion').val('');
+                $('#txtID').val('');
+                $('#txtTitulo').val('');
+                $('#txtColor').val('');
             }
 
         </script>

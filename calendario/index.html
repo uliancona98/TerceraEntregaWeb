@@ -36,12 +36,12 @@
           <h4 id="tituloEvento"></h4>
         </div>
         <div class="modal-body">
-            ID: <input type="text" id="txtID"  name="txtID"/><br/>
-            Fecha: <input type="text" id="txtFecha" name = "txtFecha"/><br/>
-            Titulo: <input type="text" id="txtTitulo" /><br/>
-            Hora: <input type="text" id="txtHora" value = "10:30"/><br/>
-            Descripcion: <textarea id = "txtDescripcion" rows = "3"></textarea><br/>
-            Color:<input type="color" value="#ff0000" id ="txtColor"><br/>
+            <input type="hidden" id="txtID"  name="txtID"/>
+            Fecha: <input type="text" disabled id="txtFecha" name = "txtFecha"/><br/>
+            Titulo: <input type="text" id="txtTitulo" placeholder="Titulo del evento"/><br/>
+            Hora: <input type ="datetime" id="txtHora" value = "10:30"/><br/>
+            Descripcion: <textarea id = "txtDescripcion" rows = "3" placeholder="Descripción del evento"></textarea><br/>
+            Color:<input type="color" value="#ff0000" id ="txtColor" style="height:36px;" ><br/>
           
         </div>
         <div class="modal-footer">
@@ -59,10 +59,14 @@
         $(document).ready(function(){
             $('#CalendarioWeb').fullCalendar({
                 dayClick:function(date, jsEvent, view){
-                    $('#txtDescripcion').val("");
-                    $('#txtID').val("");
-                    $('#txtTitulo').val("");
-                    $('#txtColor').val("");
+                    $('#btnAgregar').prop("disable", false);
+                    $('#btnModificar').prop("disable", true);
+                    $('#btnBorrar').prop("disable", true);
+                    limpiarFormulario();
+                    //$('#txtDescripcion').val("");
+                    //$('#txtID').val("");
+                    //$('#txtTitulo').val("");
+                    //$('#txtColor').val("");
                     //alert("Valor Seleccionado:" + date.format());
                     //alert("Vista actual: " + view.name);
                     //$(this).css('background-color','red');
@@ -94,6 +98,9 @@
                         ]*/
                         
                 eventClick:function(calEvent,jsEvent, view){
+                    $('#btnAgregar').prop("disable", true);
+                    $('#btnModificar').prop("disable", false);
+                    $('#btnBorrar').prop("disable", false);
                     $('#tituloEvento').html(calEvent.title);
                     $('#txtDescripcion').val(calEvent.descripcion);
                     $('#txtID').val(calEvent.id);
@@ -180,17 +187,24 @@
                 data:objEvento,
                 success:function(msg){
                     if(msg){
-                        alert("Evento agregado con éxito.");
+                        alert("Acción realizada con éxito.");
                         $('#CalendarioWeb').fullCalendar('refetchEvents');
                         document.getElementById('myModal').style.display = "none";
                     }else{
-                        alert("Ocurrió un problema al querer insertar una nueva fila");
+                        alert("Ocurrió un problema al querer realizar cambios en la base de datos");
                     }
                 },
                 error:function(){
                     alert("Hay un error");
                 }
             });
+        }
+
+        function limpiarFormulario(){
+            $('#txtDescripcion').val('');
+            $('#txtID').val('');
+            $('#txtTitulo').val('');
+            $('#txtColor').val('');
         }
 
     </script>
