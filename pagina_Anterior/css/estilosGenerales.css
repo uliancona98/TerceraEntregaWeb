@@ -80,11 +80,11 @@ h1, h2, h3, h4 {
     padding: auto;
 }
 
-.menu-general li {
+.nav > li {
     float:left;
 }
 
-.menu-general li a {
+.nav li a {
     display: block;
     color: white;
     text-align: center;
@@ -92,10 +92,19 @@ h1, h2, h3, h4 {
     text-decoration: none;
 }
 
-.menu-general li a:hover {
+.nav li a:hover {
     background-color: #111111;
 }
 
+.nav li ul {
+    display: none;
+    position: relative;
+    min-width: 140px;
+}
+
+.nav li:hover > ul{
+    display: block;
+}
 /*media querys*/
 [class*="tamano-"] {
     width: 100%;

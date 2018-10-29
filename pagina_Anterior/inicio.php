@@ -19,13 +19,23 @@ session_start();
             </div>
             <div class="menu-general">
                 <nav>
-                    <ul>
+                    <ul class ="nav">
+                        <li><a href="inicio.php">Inicio</a></li>
+                        <li><a href="">Secciones</a>
+                            <ul>
+                                <li><a href="">Historia</a></li>
+                                <li><a href="">¿Qué hacer?</a></li>
+                                <li><a href="">Gastronomía</a></li>
+                                <li><a href="">Flora y Fauna</a></li>
+                            </ul>
+                        </li>
+                        
                         <?php
                         include("../sistema_login/manejador_sesiones.php");
                         $menu = get_Menu();
 
-                        foreach( $menu as $link => $opcion){
-                            echo "<li><a href='$link' >'$opcion'</a></li>";
+                        foreach( $menu as $opcion => $link){
+                            echo "<li><a href=\"$link\">$opcion</a></li>";
                         }
                         ?>
                         <!--<li><a href="inicio.html">Inicio</a></li>
