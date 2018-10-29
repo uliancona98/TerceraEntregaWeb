@@ -59,7 +59,7 @@ session_start();
                     echo "<label><a href='../sistema_signup/signup.php'>Iniciar Sesión </a></label>";
                 }else{
                     echo "<label>Bienvenido ".$_SESSION['nombre'] ." </label>";
-                    echo "<label><a href='../sistema:login/login.php'>Cerrar Sesión </a></label>";
+                    echo "<label><a href='../sistema:login/logout.php'>Cerrar Sesión </a></label>";
                 }
                 ?>
             </div>
@@ -106,11 +106,15 @@ session_start();
                 <span class="close">&times;</span>
                 <video class="modal-content" id="vid01" controls></video>
             </div>
-
-            <div class="tamano-8" id="video">
-                <h3>Siente la experiencia.</h3>
-                <video id="video-experiencia" src="video/To%20my%20Holbox.mp4" width="60%"></video>
-                <div id="video-over">Toca el video para ampliar.</div>
+            <div id ="bottom">
+                <div class="tamano-8" id="video">
+                    <h3>Siente la experiencia.</h3>
+                    <video id="video-experiencia" src="video/To%20my%20Holbox.mp4" width="60%"></video>
+                    <div id="video-over">Toca el video para ampliar.</div>
+                </div>
+                <div class="tamano-4" id= "calendario">
+                    <div id ="CalendarioWeb"></div>
+                </div>
             </div>
             <!-- The Modal  for Calendar-->
             <div id="myModalCalendar" class="modal tamano-12">
@@ -135,9 +139,7 @@ session_start();
             </div>
 
             </div>
-            <div class="tamano-4" id= "calendario">
-                <div id ="CalendarioWeb"></div>
-            </div>
+            
         </div>
         <footer>
             <div id="about">
