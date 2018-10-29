@@ -1,13 +1,13 @@
 <?php
 //para la conexion de BD
 header('Content-Type: application/json');
-
+$accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 require("../config/Conexion.php");
 
 $con = new Conexion();
 $conexion = $con->get_conexion();
 
-$accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
+
 
 switch($accion){
     case 'agregar':
