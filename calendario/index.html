@@ -150,6 +150,16 @@
             EnviarInformacion('agregar', NuevoEvento);
             
         });
+        $('#btnBorrar').click(function(){
+            RecolectarDatos();
+            EnviarInformacion('eliminar', NuevoEvento);
+            
+        });
+        $('#btnModificar').click(function(){
+            RecolectarDatos();
+            EnviarInformacion('modificar', NuevoEvento);
+            
+        });
 
         function RecolectarDatos(){
             NuevoEvento = {
@@ -165,13 +175,16 @@
 
         function EnviarInformacion(accion, objEvento){
             $.ajax({
-                type: 'POST',
+                type:'POST',
                 url:'eventos.php?accion='+accion,
                 data:objEvento,
                 success:function(msg){
                     if(msg){
+                        alert("Evento agregado con éxito.");
                         $('#CalendarioWeb').fullCalendar('refetchEvents');
                         document.getElementById('myModal').style.display = "none";
+                    }else{
+                        alert("Ocurrió un problema al querer insertar una nueva fila");
                     }
                 },
                 error:function(){
