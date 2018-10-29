@@ -28,7 +28,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(empty($errores)){
         include("../funciones/base_de_datos/agregar_usuario.php");
         if(agregar($nombre, $correo, $contrasena_cifrada)){
-            echo "agregado con exito a la bd";
+            //Al momento de registrarse. El tipo de usuario será Usuario
+            session_start();
+            $_SESSION['nombre'] = $nombre;
+            $_SESSION['correo'] = $correo;
+            $_SESSION['tipo_usuario'] = "usuario";
+            include("../sistema_login/manejador_sesiones.php");
         }else{
             $errores['correoExists'] = "El correo ya se encuentra registrado.";
         }
@@ -58,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             <?=isError($errores,'contrasena'); ?>
             <p>Repetir contraseña: <input type="password" name="repetir_contrasena"></p>
             <?=isError($errores, 'repetir_contrasena'); ?>
-            <p><input type="submit" value="Enviar"> <a href="../index.html"><input type="button" value="Cancelar"></a> </p>
+            <p><input type="submit" value="Enviar"> <a href="../pagina_Anterior/inicio.html"><input type="button" value="Cancelar"></a> </p>
     </form>
 </body>
 </html>
