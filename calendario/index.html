@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <link rel="stylesheet" href="css/fullcalendar.min.css">
+    <link rel="stylesheet" href="css/mymodal.css">
+    <script src="js/fullcalendar.min.js"></script>
+    <script src="js/es.js"></script>
+    <style>
+        #CalendarioWeb {
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!--Centrarlo con los cols -->
+    <div id = "CalendarioWeb"></div>
+
+    <!--button for the modal-->
+    <button id="myBtn">Open Modal</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 id="tituloEvento"></h2>
+        </div>
+        <div class="modal-body">
+            <div id="descripcionEvento"></div>
+          <form>
+              <p>Hola: <input type="text" name"hola"></p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <h3>Modal Footer</h3>
+          <button type="button" >Agregar</button>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#CalendarioWeb').fullCalendar({
+                dayClick:function(date, jsEvent, view){
+                    alert("Valor Seleccionado:" + date.format());
+                    alert("Vista actual: " + view.name);
+                    $(this).css('background-color','red');
+                    //$('#myModal').style.display = "none";
+                    document.getElementById('myModal').style.display = "block";
+                },
+                        events: 'eventos.php'/*[
+                        {
+                            title:'Evento 1: prueba',
+                            descripcion:"Esto es una descripcion!",
+                            start: '2018-10-15',
+                            color: "black",
+                            textColor: "yellow"
+                        },
+                        {
+                            title: 'Eventro 2: prueba',
+                            descripcion:"Esto es una descripcion!",
+                            start: '2018-10-15',
+                            end: '2018-10-26'
+                        },
+                        {
+                            title: 'Eventro 3: prueba',
+                            descripcion:"XD",
+                            start: '2018-10-15T12:30:00',
+                            allDay:  false
+                        }
+                        ]*/,
+                        
+                eventClick:function(calEvent,jsEvent, view){
+                    $('#tituloEvento').html(calEvent.title);
+                    $('#descripcionEvento').html(calEvent.descripcion);
+                    document.getElementById('myModal').style.display = "block";
+                }
+                
+            });
+        });
+
+    </script>
+
+    <script>
+        /*
+        function onclick(){
+            var m = document.getElementById('myModal');
+            m.style.display = "block";
+        }*/
+        // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+</body>
+</html>

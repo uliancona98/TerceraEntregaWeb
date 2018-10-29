@@ -2,9 +2,6 @@
 //session_start();
 function get_menu(){
     $menu = array();
-    //Menú tradicional:
-    $menu['Inicio'] = "inicio.php";
-
     if(isset($_SESSION['tipo_usuario'])){
         if($_SESSION['tipo_usuario'] == "usuario"){
             $menu['perfil'] = "../paginas/paginas_usuario/perfil.php";
