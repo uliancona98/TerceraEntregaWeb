@@ -52,6 +52,17 @@ session_start();
                     </ul>
                 </nav>
             </div>
+            <div id="sesiones">
+                <?php
+                if(empty($_SESSION)){
+                    echo "<label><a href='../sistema_login/login.php'>Iniciar Sesión </a></label>";
+                    echo "<label><a href='../sistema_signup/signup.php'>Iniciar Sesión </a></label>";
+                }else{
+                    echo "<label>Bienvenido ".$_SESSION['nombre'] ." </label>";
+                    echo "<label><a href='../sistema:login/login.php'>Cerrar Sesión </a></label>";
+                }
+                ?>
+            </div>
             </header>
         <div class = "middle-content">
             <div class="slider">
@@ -138,6 +149,14 @@ session_start();
                             <li><a href="paginas/LugaresHolbox.html">¿Qué hacer?</a></li>
                             <li><a href="paginas/Gastronomia.html">Gastronomía</a></li>
                             <li><a href="paginas/FloraFauna.html">Flora y Fauna</a></li>
+                            <?php
+                                include("../sistema_login/manejador_sesiones.php");
+                                $menu = get_Menu();
+
+                                foreach( $menu as $opcion => $link){
+                                    echo "<li><a href=\"$link\">$opcion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </nav>
                 </div>
@@ -197,9 +216,9 @@ session_start();
                             $('#txtID').val(calEvent.id);
                             $('#txtTitulo').val(calEvent.title);
                             FechaHora =calEvent.start._i.split(" ");
-                            $('#textFecha').val(FechaHora[0]);
+                            $('#txttFecha').val(FechaHora[0]);
                             $('#txtHora').val(FechaHora[1]);
-                            document.getElementById('myModal').style.display = "block";
+                            document.getElementById('myModalCalendar').style.display = "block";
                         }
 
                     });
