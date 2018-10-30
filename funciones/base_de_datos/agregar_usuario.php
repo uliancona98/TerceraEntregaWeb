@@ -1,5 +1,5 @@
 <?php
-require ("../config/Conexion.php");
+require ("../../config/Conexion.php");
 
 function agregar($nombre, $correo, $contrasena){
     $con = new Conexion();
@@ -12,11 +12,14 @@ function agregar($nombre, $correo, $contrasena){
     $sentencia = "INSERT INTO USUARIOS (nombre, correo, contrasena) VALUES('$nombre','$correo','$contrasena')";
     $conexion->query($sentencia);
     $affected_rows = $conexion->affected_rows;
-    $con->close_conexion();
+    
+    
+    
     if($affected_rows > 0){
-        return true;
+        $last_id = $conexion->insert_id;
     }
-    return false;
+    $con->close_conexion();
+    return $last_id;
 }
 
 ?>

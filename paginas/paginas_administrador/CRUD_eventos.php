@@ -10,19 +10,53 @@ if(isset($_SESSION['nombre'])){
 }
 ?>
 
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../../pagina_Anterior/css/estilosInicio.css">
-        <link rel="stylesheet" href="../../pagina_Anterior/css/estilosGenerales.css">
+        <link rel="stylesheet" href="../../archivos_necesarios/css/estilosInicio.css">
+        <link rel="stylesheet" href="../../archivos_necesarios/css/estilosGenerales.css">
+        <link rel ="stylesheet" href="../../archivos_necesarios/css/estilos.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montaga'>
-        <script src="../../calendario/js/jquery.min.js"></script>
-        <script src="../../calendario/js/moment.min.js"></script>
-        <link rel="stylesheet" href="../../calendario/css/fullcalendar.min.css">
-        <link rel="stylesheet" href="../../calendario/css/mymodal.css">
-        <script src="../../calendario/js/fullcalendar.min.js"></script>
-        <script src="../../calendario/js/es.js"></script>
+        <script src="../../archivos_necesarios/js/jquery.min.js"></script>
+        <script src="../../archivos_necesarios/js/moment.min.js"></script>
+        <link rel="stylesheet" href="../../archivos_necesarios/css/fullcalendar.min.css">
+        <script src="../../archivos_necesarios/js/fullcalendar.min.js"></script>
+        <script src="../../archivos_necesarios/js/es.js"></script>
+        <style>
+            #CalendarioWeb {
+                background-color:rgba(200,198,176,.94);
+                box-shadow: 0px 15px 15px 0px;
+                border-style: inset;
+                border-width: 1px;
+                width: 85%;
+                margin-right: auto;
+                margin-left: auto; 
+            }
+            
+            .middle-content{
+                background-color: white;
+                overflow: hidden;
+                position: relative; 
+                box-shadow: 0px 10px 10px 0px;
+                text-align: center;
+                 
+            }
+            
+            .fc-toolbar, fc-header-toolbar{
+                
+            }
+            
+            .fc-day-header{
+                background-color: rgba( 200,230,197,.80)!important;
+            }
+            
+            #middle{
+                padding: 0 1rem;
+                margin: 1rem;
+                overflow: hidden;
+            }
+        </style>
         <title>Inicio</title>
 </head>
 <body>
@@ -34,33 +68,50 @@ if(isset($_SESSION['nombre'])){
             <div class="menu-general">
                 <nav>
                     <ul class ="nav">
-                        <li><a href="inicio.php">Inicio</a></li>
+                        <li><a href="../../inicio.php">Inicio</a></li>
                         <li><a href="">Secciones</a>
                             <ul>
-                                <li><a href="">Historia</a></li>
-                                <li><a href="">¿Qué hacer?</a></li>
-                                <li><a href="">Gastronomía</a></li>
-                                <li><a href="">Flora y Fauna</a></li>
+                                <li><a href="../Historia.php">Historia</a></li>
+                                <li><a href="../LugaresHolbox.php">¿Qué hacer?</a></li>
+                                <li><a href="../Gastronomia.php">Gastronomía</a></li>
+                                <li><a href="../FloraFauna.php">Flora y Fauna</a></li>
                             </ul>
                         </li>
+                        <li><a href="../experienciasH.php">Experiencias</a></li>
+                        <li><a href="../catalogo.php">Catálogo</a></li>
 
                         <?php
-                        include("../../sistema_login/manejador_sesiones.php");
+                        include("../../sistemas/sistema_login/manejador_sesiones.php");
                         $menu = get_Menu();
 
                         foreach( $menu as $opcion => $link){
+                            $link = "../../".$link;
                             echo "<li><a href=\"$link\">$opcion</a></li>";
                         }
                         ?>
                     </ul>
                 </nav>
             </div>
+            <div id="sesiones">
+                <?php
+                if(empty($_SESSION)){
+                    echo "<label><a href='../../sistemas/sistema_login/login.php'>Iniciar Sesión  </a></label>";
+                    echo "<label><a href='../../sistemas/sistema_signup/signup.php'> Registrarse</a></label>";
+                }else{
+                    echo "<label>Bienvenido ".$_SESSION['nombre'] ." </label>";
+                    echo "<label><a href='../../sistemas/sistema_login/logout.php'>Cerrar Sesión </a></label>";
+                }
+                ?>
+            </div>
         </header>
-        <div class = "middle-content">
-            <div id = "CalendarioWeb"></div>
+        <div class = "middle-content tamano-12">
+            <div id="titulo"><h3>En este apartado se pueden agregar / modificicar / eliminar eventos del calendario.</h3></div>
+            <div id= "middle" class="tamano-12"><div id = "CalendarioWeb"></div></div>
+            <div id="instrucciones"><h4>Para añadir evento pulse en la casilla del día a crear el evento, para borrar u modificar un evento
+                 seleccionar el evento.</h4></div>
             <!-- The Modal  for modify, add or eliminate-->
             <div id="myModal" class="modal">
-
+            
             <!-- Modal content -->
             <div class="modal-content">
             <div class="modal-header">
@@ -69,20 +120,41 @@ if(isset($_SESSION['nombre'])){
             <h4 id="tituloEvento"></h4>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="txtID"  name="txtID"/>
-                Fecha: <input type="text" disabled id="txtFecha" name = "txtFecha"/><br/>
-                Titulo: <input type="text" id="txtTitulo" placeholder="Titulo del evento"/><br/>
-                Hora: <input type ="datetime" id="txtHora" value = "10:30"/><br/>
-                Descripcion: <textarea id = "txtDescripcion" rows = "3" placeholder="Descripción del evento"></textarea><br/>
-                Color:<input type="color" value="#ff0000" id ="txtColor" style="height:36px;" ><br/>
-            
+                    <div class="campo">
+                    <input type="hidden" id="txtID"  name="txtID"/>
+                    </div>
+
+                    <div class="campo">
+                            <label for="txtFecha">Fecha: </label>
+                            <input type="text" name="txtfecha" disabled id="txtFecha" placeholder="Fecha"><br/>
+                    </div>
+
+                    <div class="campo">
+                            <label for="txtTitulo">Titulo: </label>
+                            <input type="text" name="txttitulo"  id="txtTitulo" placeholder="Titulo del evento"><br/>
+                    </div>
+
+                    <div class="campo">
+                            <label for="txtHora">Hora: </label>
+                            <input type="datetime" name="txthora"  id="txtHora" placeholder="Hora" value = "10:30" ><br/>
+                    </div>
+
+                    <div class="campo" >
+                            <label for="txtDescripcion">Descripcion: </label>
+                            <textarea   id = "txtDescripcion" rows = "3" placeholder="Descripcion del evento" ></textarea><br/>
+                    </div>
+
+                    <div class="campo" >
+                            <label for="txtColor">Color: </label>
+                            <input  type="color" name="txthora"  id="txtColor" style="height:36px;" value = "#ff0000" ><br/>
+                    </div>
+
             </div>
-            <div class="modal-footer">
-            <h3>Modal Footer</h3>
-            <button type="button" id="btnAgregar">Agregar</button>
-            <button type="button" id="btnModificar">Modificar</button>
-            <button type="button" id="btnBorrar">Borrar</button>
-            <button type="button" id="btnCancelar">Cancelar</button>
+            <div class="modal-footer" style="text-align:center;">
+            <button type="button" id="btnAgregar" class="botonModalA">Agregar</button>
+            <button type="button" id="btnModificar" class="botonModalM" >Modificar</button>
+            <button type="button" id="btnBorrar" class="botonModalB" >Borrar</button>
+            <button type="button" id="btnCancelar" class="botonModalC">Cancelar</button>
             </div>
             </div>
 
@@ -93,16 +165,18 @@ if(isset($_SESSION['nombre'])){
                 <div class="tamano-7" id="menu-footer">
                     <nav>
                         <ul>
-                            <li><a href="inicio.html">Inicio</a></li>
-                            <li><a href="paginas/Historia.html">Historia</a></li>
-                            <li><a href="paginas/LugaresHolbox.html">¿Qué hacer?</a></li>
-                            <li><a href="paginas/Gastronomia.html">Gastronomía</a></li>
-                            <li><a href="paginas/FloraFauna.html">Flora y Fauna</a></li>
+                            <li><a href="../inicio.php">Inicio</a></li>
+                            <li><a href="../Historia.php">Historia</a></li>
+                            <li><a href="../LugaresHolbox.php">¿Qué hacer?</a></li>
+                            <li><a href="../Gastronomia.php">Gastronomía</a></li>
+                            <li><a href="../paginas/FloraFauna.php">Flora y Fauna</a></li>
+                            <li><a href="../experienciasH.php">Experiencias</a></li>
+                            <li><a href="../catalogo.php">Catálogo</a></li>
                             <?php
-                                include("../../sistema_login/manejador_sesiones.php");
                                 $menu = get_Menu();
 
                                 foreach( $menu as $opcion => $link){
+                                    $link = "../../".$link;
                                     echo "<li><a href=\"$link\">$opcion</a></li>";
                                 }
                             ?>
@@ -155,7 +229,7 @@ if(isset($_SESSION['nombre'])){
                     $('#txtFecha').val(date.format());
                     document.getElementById('myModal').style.display = "block";
                 },
-                        events: 'eventos.php',
+                        events: '../../funciones/base_de_datos/eventos.php',
                         
                 eventClick:function(calEvent,jsEvent, view){
                     $('#btnAgregar').prop("disable", true);
@@ -193,6 +267,9 @@ if(isset($_SESSION['nombre'])){
             EnviarInformacion('modificar', NuevoEvento);
             
         });
+        $('#btnCancelar').click(function(){
+            document.getElementById('myModal').style.display = "none";
+        });
 
         function RecolectarDatos(){
             NuevoEvento = {
@@ -209,7 +286,7 @@ if(isset($_SESSION['nombre'])){
         function EnviarInformacion(accion, objEvento){
             $.ajax({
                 type:'POST',
-                url:'../../calendario/eventos.php?accion='+accion,
+                url:'../../funciones/base_de_datos/eventos.php?accion='+accion,
                 data:objEvento,
                 success:function(msg){
                     if(msg){

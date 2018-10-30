@@ -1,5 +1,5 @@
 <?php
-require ("../config/Conexion.php");
+require ("../../config/Conexion.php");
 
 function comprobar_ingreso($correo, $contrasena){
     $datos = array();
@@ -16,7 +16,7 @@ function comprobar_ingreso($correo, $contrasena){
 
     while($registro = $resultado->fetch_array(MYSQLI_ASSOC)){
         if(password_verify($contrasena, $registro['contrasena'])){
-            //$datos['id_usuario'] = $registro['id_usuario'];
+            $datos['id_usuario'] = $registro['id_usuario'];
             $datos['nombre'] = $registro['nombre'];
             $datos['correo'] = $registro['correo'];
             //$datos['contrasena'] = $registro['contrasena'];
