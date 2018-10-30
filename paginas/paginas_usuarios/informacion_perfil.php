@@ -69,7 +69,7 @@ if(isset($_SESSION['id_usuario'])){
         <?php
             include("../../config/conexion2.php");
             $usuario = $_SESSION['id_usuario'];
-            $query = "SELECT * FROM usuarios WHERE id = '$usuario'";              
+            $query = "SELECT * FROM usuarios WHERE id_usuario = '$usuario'";              
             $contrasena="";
             $nombre="";
             $correo="";
