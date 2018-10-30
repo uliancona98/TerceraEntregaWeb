@@ -33,14 +33,14 @@ if(isset($_SESSION['id_usuario'])){
                         <li><a href="../../inicio.php">Inicio</a></li>
                         <li><a href="">Secciones</a>
                             <ul>
-                                <li><a href="../Historia.php">Historia</a></li>
-                                <li><a href="../LugaresHolbox.php">¿Qué hacer?</a></li>
-                                <li><a href="../Gastronomia.php">Gastronomía</a></li>
-                                <li><a href="../FloraFauna.php">Flora y Fauna</a></li>
+                                <li><a href="../../Historia.php">Historia</a></li>
+                                <li><a href="../../LugaresHolbox.php">¿Qué hacer?</a></li>
+                                <li><a href="../../Gastronomia.php">Gastronomía</a></li>
+                                <li><a href="../../FloraFauna.php">Flora y Fauna</a></li>
                             </ul>
                         </li>
-                        <li><a href="../experienciasH.php">Experiencias</a></li>
-                        <li><a href="../catalogo.php">Catálogo</a></li>
+                        <li><a href="../../experienciasH.php">Experiencias</a></li>
+                        <li><a href="../../catalogo.php">Catálogo</a></li>
 
                         <?php
                         include("../../sistemas/sistema_login/manejador_sesiones.php");
@@ -184,13 +184,13 @@ if(isset($_SESSION['id_usuario'])){
                 <div class="tamano-7" id="menu-footer">
                     <nav>
                         <ul>
-                            <li><a href="../inicio.php">Inicio</a></li>
-                            <li><a href="../Historia.php">Historia</a></li>
-                            <li><a href="../LugaresHolbox.php">¿Qué hacer?</a></li>
-                            <li><a href="../Gastronomia.php">Gastronomía</a></li>
-                            <li><a href="../paginas/FloraFauna.php">Flora y Fauna</a></li>
-                            <li><a href="../experienciasH.php">Experiencias</a></li>
-                            <li><a href="../catalogo.php">Catálogo</a></li>
+                            <li><a href="../../inicio.php">Inicio</a></li>
+                            <li><a href="../../Historia.php">Historia</a></li>
+                            <li><a href="../../LugaresHolbox.php">¿Qué hacer?</a></li>
+                            <li><a href="../../Gastronomia.php">Gastronomía</a></li>
+                            <li><a href="../../paginas/FloraFauna.php">Flora y Fauna</a></li>
+                            <li><a href="../../experienciasH.php">Experiencias</a></li>
+                            <li><a href="../../catalogo.php">Catálogo</a></li>
                             <?php
                                 $menu = get_Menu();
 
