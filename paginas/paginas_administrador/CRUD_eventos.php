@@ -222,9 +222,10 @@ if(isset($_SESSION['nombre'])){
         $(document).ready(function(){
             $('#CalendarioWeb').fullCalendar({
                 dayClick:function(date, jsEvent, view){
-                    $('#btnAgregar').prop("disable", false);
-                    $('#btnModificar').prop("disable", true);
-                    $('#btnBorrar').prop("disable", true);
+                    
+                    document.getElementById('btnAgregar').disabled = false;
+                    document.getElementById('btnModificar').disabled = true;
+                    document.getElementById('btnBorrar').disabled = true;
                     limpiarFormulario();                    
                     $('#txtFecha').val(date.format());
                     document.getElementById('myModal').style.display = "block";
@@ -232,9 +233,9 @@ if(isset($_SESSION['nombre'])){
                         events: '../../funciones/base_de_datos/eventos.php',
                         
                 eventClick:function(calEvent,jsEvent, view){
-                    $('#btnAgregar').prop("disable", true);
-                    $('#btnModificar').prop("disable", false);
-                    $('#btnBorrar').prop("disable", false);
+                    document.getElementById('btnAgregar').disabled = true;
+                    document.getElementById('btnModificar').disabled = false;
+                    document.getElementById('btnBorrar').disabled = false;
                     $('#tituloEvento').html(calEvent.title);
                     $('#txtDescripcion').val(calEvent.descripcion);
                     $('#txtID').val(calEvent.id);
