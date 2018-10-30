@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['id_usuario'])){
-        if($_SESSION['tipo_usuario'] != 'administrador'){
+        if($_SESSION['tipo_usuario'] != 'usuario'){
             echo "No tienes permitido entrar a esta página";
             exit();
         }

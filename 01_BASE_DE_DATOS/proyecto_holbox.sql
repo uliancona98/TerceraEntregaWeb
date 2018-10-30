@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 30-10-2018 a las 10:12:09
+-- Tiempo de generación: 30-10-2018 a las 10:41:42
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.2.10
 
@@ -89,13 +89,13 @@ CREATE TABLE IF NOT EXISTS `restaurantes` (
 --
 
 INSERT INTO `restaurantes` (`id`, `nombre`, `precio`, `horarioAbierto`, `telefono`, `direccion`, `tipo`, `horarioCerrado`) VALUES
-(1, '\"Pizzería Edelín\"', 'Medio ', '14:00', '88876555', 'Calle 2a x 45 y 58 en la esquina del parque', 'Restaurantes ', '22:00'),
-(2, 'Bar \"La lupita\"', 'Costoso ', '18:00', '99934556', 'Calle 30 no.354 frente la playa, casa solor azul.', 'Bares ', '23:00'),
-(3, 'Bar \"El Paso\"', 'Economico ', '18:00', '99933556', 'En la avenida principal', 'Bares ', '23:00'),
-(4, 'Antojitos \"Carlos\"', 'Medio ', '14:00', '88876555', 'Calle 2a x 45 y 58 en la esquina del parque', 'Restaurantes', '22:00'),
-(11, 'Pasteleria Los Hermanos', 'Costoso ', '10:00', '23344545', 'Calle 45a x 45 esquina tiburón ballena', 'Postres ', '18:00'),
-(12, 'Bar Loco', 'Medio ', '18:00', '32323434', 'Frente a la playa, alado del malecón', 'Bares ', '03:00'),
-(14, 'Bar Argg', 'Medio ', '18:00', '32323434', 'Frente a la playa, alado de hotel Sirenas', 'Bares', '03:00');
+(1, '\"Pizzería Edelín\"', 'Medio', '14:00', '88876555', 'Calle 2a x 45 y 58 en la esquina del parque', 'Restaurantes', '22:00'),
+(2, 'Bar \"La lupita\"', 'Costoso', '18:00', '99934556', 'Calle 30 no.354 frente la playa, casa solor azul.', 'Bares', '23:00'),
+(3, 'Bar \"El Paso\"', 'Economico', '18:00', '99933556', 'En la avenida principal', 'Bares', '23:00'),
+(4, 'Antojitos \"Carlos\"', 'Medio', '14:00', '88876555', 'Calle 2a x 45 y 58 en la esquina del parque', 'Restaurantes', '22:00'),
+(11, 'Pasteleria Los Hermanos', 'Costoso', '10:00', '23344545', 'Calle 45a x 45 esquina tiburón ballena', 'Postres', '18:00'),
+(12, 'Bar Loco', 'Medio', '18:00', '32323434', 'Frente a la playa, alado del malecón', 'Bares', '03:00'),
+(14, 'Bar Argg', 'Medio', '18:00', '32323434', 'Frente a la playa, alado de hotel Sirenas', 'Bares', '03:00');
 
 -- --------------------------------------------------------
 

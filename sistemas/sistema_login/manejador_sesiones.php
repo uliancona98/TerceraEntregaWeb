@@ -4,7 +4,7 @@ function get_menu(){
     $menu = array();
     if(isset($_SESSION['tipo_usuario'])){
         if($_SESSION['tipo_usuario'] == "usuario"){
-            $menu['Perfil'] = "paginas/paginas_usuario/perfil_usuario.php";
+            $menu['Perfil'] = "paginas/paginas_usuarios/perfil_usuario.php";
             $menu['Feed'] = "paginas/feed.php";
             //header("Location: ../");
             //exit();
