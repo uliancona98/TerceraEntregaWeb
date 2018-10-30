@@ -9,7 +9,7 @@
         header("Location: informacion_perfil.php");
     }
     
-    $query2 = "DELETE from usuarios WHERE id='$id'";
+    $query2 = "DELETE from usuarios WHERE id_usuario='$id'";
     $resultado2 = $conexion->query($query2);
     if($resultado2){
         header("Location: index.php");
