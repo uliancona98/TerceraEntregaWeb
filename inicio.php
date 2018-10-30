@@ -135,7 +135,7 @@ session_start();
                 </div>
                 <div class="tamano-8 video">
                     <h3>Siente la experiencia.</h3>
-                    <video id="video-experiencia" src="video/To%20my%20Holbox.mp4" width="60%"></video>
+                    <video id="video-experiencia" src="video/To%20my%20Holbox.webm" width="60%"></video>
                     <div id="video-over">Toca el video para ampliar.</div>
                 </div>
                 
