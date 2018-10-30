@@ -1,5 +1,5 @@
 <?php
-    include("conexion.php");
+    include("../../config/conexion2.php");
     $id = $_POST['variable'];
     
     /*echo "<script type='text/javascript'>
@@ -11,10 +11,10 @@
 
     if($resultado){
         echo "Si se elimino";
-        header("Location: mostrar_perfil.php");
+        header("Location:../../paginas/paginas_usuarios/mostrar_perfil.php");
     }else{
         echo "No se elimino"; 
-        header("Location: mostrar_perfil.php");
+        header("Location:../../paginas/paginas_usuariosmostrar_perfil.php");
     }
     mysqli_close($conexion);
 
